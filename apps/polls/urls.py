@@ -8,9 +8,8 @@
 from django.urls import path
 from . import views
 
+app_name = 'polls'
 urlpatterns = [
+    # http://127.0.0.1:8000/polls/
     path('', views.index, name='index'),
-    path('test1', views.test1, name='test1'),
-    path('test2', views.test2, name='test2'),
-    path('test3', views.test3, name='test3'),
 ]
