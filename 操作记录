@@ -1,0 +1,34 @@
+1、Tools->Run manage.py Task:
+   startapp news
+2、编写news/models.py，创建Reporter和Article类及其字段
+3、在settings.py中注册新创建的app：
+   INSTALLED_APPS = [
+    ...
+    'news.apps.NewsConfig',
+    ...
+]
+4、Tools->Run manage.py Task:
+   makemigrations news
+5、Tools->Run manage.py Task:
+   migrate news
+6、新建Apps目录，将新建的两个app都放进去了，将Apps make directory as sources root
+7、站点管理的注册：
+   配置apps/news/admin.py:
+from django.contrib import admin
+from .models import Reporter, Article
+# Register your models here.
+admin.site.register(Reporter)
+admin.site.register(Article)
+8、修改模块及类在站点管理上的显示：
+   1、模块：
+   apps/news/apps.py配置：
+    class NewsConfig(AppConfig):
+        name = 'apps.news'
+        verbose_name = '新闻版块'
+   2、类名：
+   apps/news/models.py配置：
+   在对应类下写内部类，Meta：
+   class Meta:
+       verbose_name = "报道"
+       verbose_name_plural = verbose_name
+   即可

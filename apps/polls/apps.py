@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class PollsConfig(AppConfig):
-    name = 'polls'
+    name = 'apps.polls'
+    verbose_name = '社区版块'
