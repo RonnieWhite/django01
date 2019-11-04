@@ -4,13 +4,13 @@ from django.db import models
 
 # Create your models here.
 class Reporter(models.Model):
-    full_name = models.CharField(max_length=70, verbose_name="全名")
+    full_name = models.CharField(max_length=70, verbose_name="记者全名")
 
     def __str__(self):
         return self.full_name
 
     class Meta:
-        verbose_name = '报道'
+        verbose_name = '记者'
         verbose_name_plural = verbose_name
 
 

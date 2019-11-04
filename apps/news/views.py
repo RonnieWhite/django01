@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from .models import Article, Reporter
 from django.core import serializers
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 from tools import responseAndSerializers
 
 
@@ -18,3 +18,9 @@ def create(request):
     r = Reporter(full_name='安倍')
     r.save()
     return responseAndSerializers.changeToResponse(str(r.id))
+
+
+def show(request):
+    article = Article.objects.order_by('headline')
+    output = ','.join([a.headline for a in article])
+    return HttpResponse(output)
