@@ -32,3 +32,11 @@ admin.site.register(Article)
        verbose_name = "报道"
        verbose_name_plural = verbose_name
    即可
+9、过滤器配置,apps/news/admin.py:
+   class ArticleAdmin(admin.ModelAdmin):
+       fields = ['pub_date', 'headline', 'content']
+       list_filter = ['pub_date']
+       search_fields = ['headline']
+
+
+   admin.site.register(Article, ArticleAdmin)

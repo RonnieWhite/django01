@@ -4,13 +4,19 @@ from django.db import models
 
 # Create your models here.
 class Reporter(models.Model):
-    full_name = models.CharField(max_length=70, verbose_name="记者全名")
+    BODY_SIZE = [
+        ('S', 'Small'),
+        ('M', 'Medium'),
+        ('L', 'Large'),
+    ]
+    full_name = models.CharField(max_length=70, verbose_name="作者全名")
+    body_size = models.CharField(max_length=1, verbose_name="身材尺寸", choices=BODY_SIZE, default='M')
 
     def __str__(self):
         return self.full_name
 
     class Meta:
-        verbose_name = '记者'
+        verbose_name = '作者'
         verbose_name_plural = verbose_name
 
 
@@ -24,5 +30,6 @@ class Article(models.Model):
         return self.headline
 
     class Meta:
+        ordering = ['pub_date']
         verbose_name = '文章'
         verbose_name_plural = verbose_name
