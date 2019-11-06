@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # 注册polls模块
     'polls.apps.PollsConfig',
     'news.apps.NewsConfig',
+    'bookstore.apps.BookstoreConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
