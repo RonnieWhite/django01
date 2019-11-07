@@ -40,3 +40,51 @@ admin.site.register(Article)
 
 
    admin.site.register(Article, ArticleAdmin)
+
+
+11、对结果排序：
+     b = Book.objects.order_by('create_time')
+    倒序：
+     b = Book.objects.order_by('-create_time')
+
+12、QuerySet API从入门到暂停
+    --暂时没有深入研究，但牵涉到避免SQL注入攻击，有必要深入学习
+
+13、原生SQL，用raw，示例：
+    sql = "SELECT * FROM bookstore_book"
+    b = Book.objects.raw(sql)
+    b = Book.objects.raw(sql)[0]
+
+14、若你使用了字符串插入或用引号包裹占位符，你正处于 SQL 注入的风险中。
+    要避免SQL注入，你绝对不能在SQL字符串中用引号包裹 %s 占位符。
+
+15、在apps/bookstore/views.py中新增了原生SQL的案例以及连接其它库的案例
+    连接多个库的操作：
+    1、在settings.py中添加库的设置：
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django01',
+        'USER': 'root',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'mxshop': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mxshop',
+        'USER': 'root',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    }
+}
+注意：migrate 管理命令一次只在一个数据库上进行操作，默认情况下为default数据库，
+但提供 --database 的话，它可以同步到不同数据库。
+如果想同步到多个库，可以在migrate命令后制定database参数：migrate --database=mxshop
+如果没有指定default数据库，在migrate的时候均需要指定--database参数
+
+关联：
+多对一：ForeignKey
+多对多：ManyToManyField
+一对一：OneToOneField
