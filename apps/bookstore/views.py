@@ -11,8 +11,8 @@ from tools import transToJson
 # Create your views here.
 def bookDetail(request):
     # sql = "SELECT * FROM bookstore_book WHERE book_name=%s"
-    sql = "SELECT * FROM bookstore_book"
-    return transToJson.toJsonResponse(sql)
+    sql = "SELECT * FROM bookstore_book WHERE id=%s"
+    return transToJson.toJsonResponse(sql, [2])
     # cursor.execute(sql, ['朝花夕拾'])
     # 调用存储过程
     #     # cursor.callproc('test_procedure', [1, 'test'])

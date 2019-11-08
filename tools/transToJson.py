@@ -16,10 +16,16 @@ def QSToJR(data):
 
 
 # 转换原生SQL查询的结果为JsonResponse
-def toJsonResponse(sql, database='default'):
+def toJsonResponse(sql, condition=None, database='default'):
+    if condition is None:
+        condition = []
     with connections[database].cursor() as cursor:
-        cursor.execute(sql)
+        if len(condition) == 0:
+            cursor.execute(sql)
+        else:
+            cursor.execute(sql, condition)
         desc = cursor.description
+        # data = [dict(zip([col[0] for col in desc], row)) for row in cursor.fetchmany(size=1)]
         data = [dict(zip([col[0] for col in desc], row)) for row in cursor.fetchall()]
     return JsonResponse(data, safe=False)
 
