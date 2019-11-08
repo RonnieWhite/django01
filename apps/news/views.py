@@ -3,7 +3,7 @@ from django.views.generic.base import View
 from .models import Article, Reporter
 from django.core import serializers
 from django.http import JsonResponse,HttpResponse
-from tools import responseAndSerializers
+from tools import transToJson
 
 
 # Create your views here.
@@ -11,13 +11,13 @@ from tools import responseAndSerializers
 
 def index(request):
     article = Article.objects.all()
-    return responseAndSerializers.changeToResponse(article)
+    return transToJson.changeToResponse(article)
 
 
 def create(request):
     r = Reporter(full_name='安倍')
     r.save()
-    return responseAndSerializers.changeToResponse(str(r.id))
+    return transToJson.changeToResponse(str(r.id))
 
 
 def show(request):

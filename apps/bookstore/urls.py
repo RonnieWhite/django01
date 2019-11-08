@@ -13,4 +13,5 @@ urlpatterns = [
     # http://127.0.0.1:8000/bookstore/bookDetail
     path('bookDetail', views.bookDetail, name='bookDetail'),
     path('otherDB', views.otherDB, name='otherDB'),
+    path('testTools', views.testTools, name='testTools'),
 ]

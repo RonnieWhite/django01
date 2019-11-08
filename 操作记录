@@ -88,3 +88,6 @@ admin.site.register(Article)
 多对一：ForeignKey
 多对多：ManyToManyField
 一对一：OneToOneField
+
+16、修改工具包tools下的文件：
+    在transToJson.py文件中添加、优化了查询返回结果JsonResponse格式
